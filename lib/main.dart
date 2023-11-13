@@ -48,7 +48,7 @@ class ToDoListPageState extends State<ToDoListPage> {
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        title: const Text("To Do List App"),
+        title: const Text("To Do List App"),centerTitle: true,
         backgroundColor: Colors.black38,
       ),
          body: ValueListenableBuilder(
