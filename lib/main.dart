@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<List<ToDoItem>> snapshot){
           if(snapshot.connectionState == ConnectionState.done)
           {
-             ToDoListPage();
+             return ToDoListPage(snapshot.data ?? []);
           }
           return const CircularProgressIndicator();
         },
@@ -30,8 +30,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ToDoListPage extends StatelessWidget {
-   ToDoListPage({Key? key }) : super(key: key);
+class ToDoListPage extends StatefulWidget {
+  final List<ToDoItem> todos;
+
+  ToDoListPage(this.todos);
+
+  @override
+  ToDoListPageState createState() => ToDoListPageState();
+}
+
+class ToDoListPageState extends State<ToDoListPage> {
 
   final TodoService todoService = TodoService();
   final TextEditingController textEditingController = TextEditingController();
@@ -93,6 +101,7 @@ class ToDoListPage extends StatelessWidget {
           }
           );
         },
+        child: Icon(Icons.add),
       ),
     );
   }
