@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:todo_app/todo_item.dart';
 
-void main() {
+void main() async{
+  await Hive.initFlutter();
+  Hive.registerAdapter(ToDoItemAdapter());  
   runApp(const MyApp());
 }
 
